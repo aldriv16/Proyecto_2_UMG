@@ -82,6 +82,7 @@ void inicializarTraducciones() {
     traducciones.insert(make_pair("cin", "entrada"));
     traducciones.insert(make_pair("endl", "finalizar"));
 }
+
 void crearElemento() {
     string clave, valor;
     cout << "Crear nuevo elemento\nClave: ";
@@ -89,20 +90,19 @@ void crearElemento() {
     cout << "Valor: ";
     cin.ignore();
     getline(cin, valor);
-    datos[clave] = valor;
+    traducciones[clave] = valor;
     cout << "Elemento guardado correctamente." << endl;
 }
 
-<<<<<<< HEAD
 void borrarElemento() {
     string clave;
     cout << "Borrar elemento\nClave: ";
     cin >> clave;
-    if (datos.erase(clave)) {
+    if (traducciones.erase(clave)) {
         cout << "Elemento borrado correctamente." << endl;
     } else {
-        cout << "Elemento no encontrado." << endl;
-    }
+        cout << "Elemento no encontrado." <<endl;
+    }
 }
 =======
 // Funciones CRUD (aÃ±adidas sin modificar el cÃ³digo original)
