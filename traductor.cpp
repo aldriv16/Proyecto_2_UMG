@@ -82,7 +82,27 @@ void inicializarTraducciones() {
     traducciones.insert(make_pair("cin", "entrada"));
     traducciones.insert(make_pair("endl", "finalizar"));
 }
+void crearElemento() {
+    string clave, valor;
+    cout << "Crear nuevo elemento\nClave: ";
+    cin >> clave;
+    cout << "Valor: ";
+    cin.ignore();
+    getline(cin, valor);
+    datos[clave] = valor;
+    cout << "Elemento guardado correctamente." << endl;
+}
 
+void borrarElemento() {
+    string clave;
+    cout << "Borrar elemento\nClave: ";
+    cin >> clave;
+    if (datos.erase(clave)) {
+        cout << "Elemento borrado correctamente." << endl;
+    } else {
+        cout << "Elemento no encontrado." << endl;
+    }
+}
 
 string traducirCodigo(const string& linea) {
     stringstream ss(linea);
@@ -141,7 +161,39 @@ int main() {
         codigo += linea + "\n";
     }
 
-   
+   void menuCRUD() {
+    int opcion;
+    do {
+        cout << "\n--- Menu CRUD de Traducciones ---\n";
+        cout << "1. Crear nueva traduccion\n";
+        cout << "2. Leer (mostrar) todas las traducciones\n";
+        cout << "3. Actualizar una traduccion\n";
+        cout << "4. Eliminar una traduccion\n";
+        cout << "5. Salir\n";
+        cout << "Seleccione una opcion: ";
+        cin >> opcion;
+
+        switch (opcion) {
+            case 1:
+                crearTraduccion();
+                break;
+            case 2:
+                mostrarTraducciones();
+                break;
+            case 3:
+                actualizarTraduccion();
+                break;
+            case 4:
+                eliminarTraduccion();
+                break;
+            case 5:
+                cout << "Saliendo del menu...\n";
+                break;
+            default:
+                cout << "Opcion no valida, intente de nuevo.\n";
+        }
+    } while (opcion != 5);
+}
     stringstream ss(codigo);
     string lineaTraducida;
 
