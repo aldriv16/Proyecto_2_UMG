@@ -130,7 +130,20 @@ void eliminarTraduccion() {
         cout << "La palabra no fue encontrada.\n";
     }
 }
+void guardarDiccionarioEnArchivo() {
+    ofstream archivo("diccionario.dat");
+    if (!archivo) {
+        cerr << "No se pudo crear el archivo diccionario.dat" << endl;
+        return;
+    }
 
+    for (const auto& par : traducciones) {
+        archivo << par.first << " => " << par.second << endl;
+    }
+
+    archivo.close();
+    cout << "Diccionario guardado exitosamente en diccionario.dat\n";
+}
 void menuCRUD() {
     int opcion;
     do {
@@ -202,16 +215,17 @@ string traducirEstructurasDeControl(string linea) {
 
 int main() {
     inicializarTraducciones();
-    
+
     int opcion;
     do {
         cout << "\n--- Programa Principal ---\n";
         cout << "1. Traducir codigo C++\n";
         cout << "2. Administrar traducciones (CRUD)\n";
-        cout << "3. Salir\n";
+        cout << "3. Guardar traducciones en archivo\n";
+        cout << "4. Salir\n";
         cout << "Seleccione una opcion: ";
         cin >> opcion;
-        cin.ignore(); 
+        cin.ignore();
 
         if (opcion == 1) {
             string linea, codigo;
@@ -235,7 +249,6 @@ int main() {
 
             stringstream ss(codigo);
             string lineaTraducida;
-
             while (getline(ss, linea)) {
                 linea = traducirEstructurasDeControl(linea);
                 lineaTraducida = traducirCodigo(linea);
@@ -254,17 +267,14 @@ int main() {
 
             archivoSalida.close();
             cout << "Traduccion guardada en " << nombreArchivo << endl;
-        } 
-        else if (opcion == 2) {
+        } else if (opcion == 2) {
             menuCRUD();
-        }
-        else if (opcion == 3) {
+        } else if (opcion == 3) {
+            guardarDiccionarioEnArchivo();
+        } else if (opcion == 4) {
             cout << "Saliendo del programa...\n";
         }
-        else {
-            cout << "Opcion no valida, intente de nuevo.\n";
-        }
-    } while (opcion != 3);
+    } while (opcion != 4);
 
     return 0;
 }
