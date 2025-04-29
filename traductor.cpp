@@ -4,20 +4,20 @@
 #include <sstream>
 #include <cctype>
 #include <fstream>
-using namespace std;
 
+using namespace std;
 
 map<string, string> traducciones;
 
 void inicializarTraducciones() {
     
     traducciones.insert(make_pair("asm", "ensamblador"));
-    traducciones.insert(make_pair("auto", "automático"));
+    traducciones.insert(make_pair("auto", "automÃ¡tico"));
     traducciones.insert(make_pair("bool", "booleano"));
     traducciones.insert(make_pair("break", "salir"));
     traducciones.insert(make_pair("case", "caso"));
     traducciones.insert(make_pair("catch", "capturar"));
-    traducciones.insert(make_pair("char", "carácter"));
+    traducciones.insert(make_pair("char", "carÃ¡cter"));
     traducciones.insert(make_pair("class", "clase"));
     traducciones.insert(make_pair("const", "constante"));
     traducciones.insert(make_pair("const_cast", "casting_constante"));
@@ -26,10 +26,10 @@ void inicializarTraducciones() {
     traducciones.insert(make_pair("delete", "eliminar"));
     traducciones.insert(make_pair("do", "hacer"));
     traducciones.insert(make_pair("double", "doble"));
-    traducciones.insert(make_pair("dynamic_cast", "casting_dinámico"));
+    traducciones.insert(make_pair("dynamic_cast", "casting_dinÃ¡mico"));
     traducciones.insert(make_pair("else", "sino"));
-    traducciones.insert(make_pair("enum", "enumeración"));
-    traducciones.insert(make_pair("explicit", "explícito"));
+    traducciones.insert(make_pair("enum", "enumeraciÃ³n"));
+    traducciones.insert(make_pair("explicit", "explÃ­cito"));
     traducciones.insert(make_pair("extern", "externo"));
     traducciones.insert(make_pair("false", "falso"));
     traducciones.insert(make_pair("float", "flotante"));
@@ -37,7 +37,7 @@ void inicializarTraducciones() {
     traducciones.insert(make_pair("friend", "amigo"));
     traducciones.insert(make_pair("goto", "ir"));
     traducciones.insert(make_pair("if", "si"));
-    traducciones.insert(make_pair("inline", "en_línea"));
+    traducciones.insert(make_pair("inline", "en_lÃ­nea"));
     traducciones.insert(make_pair("int", "entero"));
     traducciones.insert(make_pair("long", "largo"));
     traducciones.insert(make_pair("mutable", "mutable"));
@@ -46,15 +46,15 @@ void inicializarTraducciones() {
     traducciones.insert(make_pair("operator", "operador"));
     traducciones.insert(make_pair("private", "privado"));
     traducciones.insert(make_pair("protected", "protegido"));
-    traducciones.insert(make_pair("public", "público"));
+    traducciones.insert(make_pair("public", "pÃºblico"));
     traducciones.insert(make_pair("register", "registro"));
     traducciones.insert(make_pair("reinterpret_cast", "casting_reinterpretado"));
     traducciones.insert(make_pair("return", "retorno"));
     traducciones.insert(make_pair("short", "corto"));
     traducciones.insert(make_pair("signed", "firmado"));
-    traducciones.insert(make_pair("sizeof", "tamaño_de"));
-    traducciones.insert(make_pair("static", "estático"));
-    traducciones.insert(make_pair("static_cast", "casting_estático"));
+    traducciones.insert(make_pair("sizeof", "tamaÃ±o_de"));
+    traducciones.insert(make_pair("static", "estÃ¡tico"));
+    traducciones.insert(make_pair("static_cast", "casting_estÃ¡tico"));
     traducciones.insert(make_pair("struct", "estructura"));
     traducciones.insert(make_pair("switch", "cambiar"));
     traducciones.insert(make_pair("template", "plantilla"));
@@ -65,12 +65,12 @@ void inicializarTraducciones() {
     traducciones.insert(make_pair("typedef", "tipo_definido"));
     traducciones.insert(make_pair("typeid", "tipo_id"));
     traducciones.insert(make_pair("typename", "nombre_tipo"));
-    traducciones.insert(make_pair("union", "unión"));
+    traducciones.insert(make_pair("union", "uniÃ³n"));
     traducciones.insert(make_pair("unsigned", "sin_signo"));
     traducciones.insert(make_pair("using", "usando"));
     traducciones.insert(make_pair("virtual", "virtual"));
-    traducciones.insert(make_pair("void", "vacío"));
-    traducciones.insert(make_pair("volatile", "volátil"));
+    traducciones.insert(make_pair("void", "vacÃ­o"));
+    traducciones.insert(make_pair("volatile", "volÃ¡til"));
     traducciones.insert(make_pair("while", "mientras"));
 
     
@@ -83,29 +83,6 @@ void inicializarTraducciones() {
     traducciones.insert(make_pair("endl", "finalizar"));
 }
 
-void crearElemento() {
-    string clave, valor;
-    cout << "Crear nuevo elemento\nClave: ";
-    cin >> clave;
-    cout << "Valor: ";
-    cin.ignore();
-    getline(cin, valor);
-    traducciones[clave] = valor;
-    cout << "Elemento guardado correctamente." << endl;
-}
-
-void borrarElemento() {
-    string clave;
-    cout << "Borrar elemento\nClave: ";
-    cin >> clave;
-    if (traducciones.erase(clave)) {
-        cout << "Elemento borrado correctamente." << endl;
-    } else {
-        cout << "Elemento no encontrado." <<endl;
-����}
-}
-=======
-// Funciones CRUD (añadidas sin modificar el código original)
 void mostrarTraducciones() {
     cout << "\n--- Lista de traducciones ---\n";
     for (const auto& par : traducciones) {
@@ -121,7 +98,7 @@ void crearTraduccion() {
     cout << "Ingrese su traduccion al espanol: ";
     cin >> traduccion;
     traducciones[palabra] = traduccion;
-    cout << "Traduccion agregada exitosamente.\n";
+    cout << "Traducción agregada exitosamente.\n";
 }
 
 void actualizarTraduccion() {
@@ -188,17 +165,14 @@ void menuCRUD() {
     } while (opcion != 5);
 }
 
-
 string traducirCodigo(const string& linea) {
     stringstream ss(linea);
     string palabra, resultado;
 
     while (ss >> palabra) {
-        
         if (traducciones.find(palabra) != traducciones.end()) {
             resultado += traducciones[palabra] + " ";
         } else {
-            
             resultado += palabra + " ";
         }
     }
@@ -206,9 +180,7 @@ string traducirCodigo(const string& linea) {
     return resultado;
 }
 
-
 string traducirEstructurasDeControl(string linea) {
-    
     size_t pos = 0;
     while ((pos = linea.find("if", pos)) != string::npos) {
         if (pos == 0 || !isalpha(linea[pos - 1])) {
@@ -217,7 +189,6 @@ string traducirEstructurasDeControl(string linea) {
         pos += 2;
     }
 
-   
     pos = 0;
     while ((pos = linea.find("else", pos)) != string::npos) {
         if (pos == 0 || !isalpha(linea[pos - 1])) {
@@ -229,18 +200,18 @@ string traducirEstructurasDeControl(string linea) {
     return linea;
 }
 
-icializarTraducciones();
+int main() {
+    inicializarTraducciones();
     
     int opcion;
     do {
         cout << "\n--- Programa Principal ---\n";
         cout << "1. Traducir codigo C++\n";
         cout << "2. Administrar traducciones (CRUD)\n";
-        cout << "3. Guardar traducciones en archivo\n";
-        cout << "4. Salir\n";
+        cout << "3. Salir\n";
         cout << "Seleccione una opcion: ";
         cin >> opcion;
-        cin.ignore(); // Limpiar el buffer de entrada
+        cin.ignore(); 
 
         if (opcion == 1) {
             string linea, codigo;
@@ -288,29 +259,12 @@ icializarTraducciones();
             menuCRUD();
         }
         else if (opcion == 3) {
-            string nombreArchivo;
-            cout << "Ingrese el nombre del archivo para guardar las traducciones (sin extension): ";
-            cin >> nombreArchivo;
-            nombreArchivo += ".dat";
-
-            ofstream archivo(nombreArchivo);
-            if (archivo.is_open()) {
-                for (const auto& par : traducciones) {
-                    archivo << par.first << ":" << par.second << endl;
-                }
-                archivo.close();
-                cout << "Traducciones guardadas en " << nombreArchivo << endl;
-            } else {
-                cerr << "Error al crear el archivo." << endl;
-            }
-        }
-        else if (opcion == 4) {
             cout << "Saliendo del programa...\n";
         }
         else {
             cout << "Opcion no valida, intente de nuevo.\n";
         }
-    } while (opcion != 4);
+    } while (opcion != 3);
 
     return 0;
 }
