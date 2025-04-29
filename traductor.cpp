@@ -83,6 +83,88 @@ void inicializarTraducciones() {
     traducciones.insert(make_pair("endl", "finalizar"));
 }
 
+// Funciones CRUD (añadidas sin modificar el código original)
+void mostrarTraducciones() {
+    cout << "\n--- Lista de traducciones ---\n";
+    for (const auto& par : traducciones) {
+        cout << par.first << " => " << par.second << endl;
+    }
+    cout << "------------------------------\n";
+}
+
+void crearTraduccion() {
+    string palabra, traduccion;
+    cout << "Ingrese la palabra en ingles: ";
+    cin >> palabra;
+    cout << "Ingrese su traduccion al espanol: ";
+    cin >> traduccion;
+    traducciones[palabra] = traduccion;
+    cout << "Traduccion agregada exitosamente.\n";
+}
+
+void actualizarTraduccion() {
+    string palabra;
+    cout << "Ingrese la palabra que desea actualizar: ";
+    cin >> palabra;
+
+    auto it = traducciones.find(palabra);
+    if (it != traducciones.end()) {
+        cout << "Traducción actual: " << it->second << endl;
+        cout << "Ingrese la nueva traduccion: ";
+        string nuevaTraduccion;
+        cin >> nuevaTraduccion;
+        it->second = nuevaTraduccion;
+        cout << "Traducción actualizada correctamente.\n";
+    } else {
+        cout << "La palabra no existe.\n";
+    }
+}
+
+void eliminarTraduccion() {
+    string palabra;
+    cout << "Ingrese la palabra que desea eliminar: ";
+    cin >> palabra;
+
+    if (traducciones.erase(palabra)) {
+        cout << "Traducción eliminada exitosamente.\n";
+    } else {
+        cout << "La palabra no fue encontrada.\n";
+    }
+}
+
+void menuCRUD() {
+    int opcion;
+    do {
+        cout << "\n--- Menu CRUD de Traducciones ---\n";
+        cout << "1. Crear nueva traduccion\n";
+        cout << "2. Leer (mostrar) todas las traducciones\n";
+        cout << "3. Actualizar una traduccion\n";
+        cout << "4. Eliminar una traduccion\n";
+        cout << "5. Salir\n";
+        cout << "Seleccione una opcion: ";
+        cin >> opcion;
+
+        switch (opcion) {
+            case 1:
+                crearTraduccion();
+                break;
+            case 2:
+                mostrarTraducciones();
+                break;
+            case 3:
+                actualizarTraduccion();
+                break;
+            case 4:
+                eliminarTraduccion();
+                break;
+            case 5:
+                cout << "Saliendo del menu...\n";
+                break;
+            default:
+                cout << "Opcion no valida, intente de nuevo.\n";
+        }
+    } while (opcion != 5);
+}
 
 string traducirCodigo(const string& linea) {
     stringstream ss(linea);
